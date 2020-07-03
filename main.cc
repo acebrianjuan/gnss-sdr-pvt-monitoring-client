@@ -45,7 +45,7 @@ int main(int argc, char* argv[])
                 {
                     // Print help.
                     std::cerr << "Usage: gnss-sdr-pvt-monitoring-client <port>" << std::endl;
-                    return false;
+                    return 1;
                 }
 
             unsigned short port = boost::lexical_cast<unsigned short>(argv[1]);
@@ -65,7 +65,8 @@ int main(int argc, char* argv[])
     catch (std::exception& e)
         {
             std::cerr << e.what() << std::endl;
+            return 1;
         }
 
-    return true;
+    return 0;
 }

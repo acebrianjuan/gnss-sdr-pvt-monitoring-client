@@ -43,7 +43,7 @@ Monitor_Pvt_Udp_Source::Monitor_Pvt_Udp_Source(const unsigned short& port) : soc
 
 bool Monitor_Pvt_Udp_Source::read_monitor_pvt(Monitor_Pvt& monitor_pvt)
 {
-    char buff[1500];  // Buffer for storing the received data.
+    char buff[2000]{};  // Buffer for storing the received data.
 
     // This call will block until one or more bytes of data has been received.
     int bytes = socket.receive(boost::asio::buffer(buff));
@@ -120,6 +120,8 @@ void Monitor_Pvt_Udp_Source::print_variable_names_column()
     mvprintw(row + 25, col, fspec, "pdop:");
     mvprintw(row + 26, col, fspec, "hdop:");
     mvprintw(row + 27, col, fspec, "vdop:");
+    // User clock drift
+    mvprintw(row + 28, col, fspec, "user_clk_drift_ppm:");
 
     refresh();  // Update the screen.
 }
@@ -179,6 +181,7 @@ void Monitor_Pvt_Udp_Source::print_values_column()
             mvprintw(row + 25, col, "%lf\n", monitor_pvt.pdop);
             mvprintw(row + 26, col, "%lf\n", monitor_pvt.hdop);
             mvprintw(row + 27, col, "%lf\n", monitor_pvt.vdop);
+            mvprintw(row + 28, col, "%lf\n", monitor_pvt.user_clk_drift_ppm);
 
             refresh();  // Update the screen.
         }

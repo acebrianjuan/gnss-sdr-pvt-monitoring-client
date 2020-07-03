@@ -59,4 +59,18 @@ TOW_at_current_symbol_ms: 422011780
                     pdop: 3.805421
                     hdop: 2.030742
                     vdop: 3.218279
+      user_clk_drift_ppm: 0.001538
+```
+
+
+**GNSS-SDR configuration**
+---
+
+Add this to your gnss-sdr configuration file:
+
+```
+PVT.enable_monitor=true
+PVT.monitor_client_addresses=127.0.0.1
+PVT.monitor_udp_port=1234
+PVT.enable_protobuf=false
 ```
